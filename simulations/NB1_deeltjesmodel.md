@@ -36,8 +36,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Beginwaarden
-dt = 0.25                  #s
-t_e = 10                   #s
+dt = 0.01                  #s
+t_e = 10              #s
 N = int(t_e/dt)+1
 t = np.arange(0,t_e+dt,dt) #s
 
@@ -58,7 +58,7 @@ for i in range(0,N-1):
     v_2[i+1] = v_2[i] + a_2*dt
 
 # Plotten van de gegevens.    
-plt.figure()
+plt.figure(dpi=300)
 
 plt.xlabel('$t$(s)')
 plt.ylabel('$x$(m)')
@@ -77,6 +77,62 @@ Wat op zou kunnen vallen is dat de snelheid in een cel constant gehouden wordt (
 Maak het tijdsinterval $dt$ groter en vergelijk de afgelegde weg in de tien seconde. Wat gebeurt er met de afgelegde weg als we $dt$ groter maken? Is dat logisch vanuit gezien de natuurkunde? En gezien de methode van discretisatie? Leg uit.
 ```
 
+```python
+
+# Beginwaarden
+dt1 = 1                  #s
+dt2 = 0.01
+t_e = 10              #s
+N1 = int(t_e/dt1)+1
+N2 = int(t_e/dt2)+1
+t1 = np.arange(0,t_e+dt1,dt1) #s
+t2 = np.arange(0, t_e+dt2, dt2)
+
+# fietser 1
+x_1_1 = np.zeros(N1)          #m     maakt array van lengte N met alleen maar waarde 0.
+x_1_2 = np.zeros(N2)
+v_1 = 5                    #m/s
+
+# fietser 2
+x_2_1 = np.zeros(N1)          #m     
+x_2_2 = np.zeros(N2)
+v_2_1 = np.zeros(N1)          #m/s     
+v_2_2 = np.zeros(N2)
+a_2 = .5                   #m/s^2     
+
+# Uitvoeren van de simulatie
+for i in range(0,N1-1):
+    x_1_1[i+1] = x_1_1[i] + v_1*dt1
+    
+    
+    x_2_1[i+1] = x_2_1[i] + v_2_1[i]*dt1
+    
+    
+    v_2_1[i+1] = v_2_1[i] + a_2*dt1
+    
+
+for i in range(0,N2-1):
+    x_1_2[i+1] = x_1_2[i] + v_1*dt2
+    
+    x_2_2[i+1] = x_2_2[i] + v_2_2[i]*dt2
+    
+    v_2_2[i+1] = v_2_2[i] + a_2*dt2
+
+# Plotten van de gegevens.    
+plt.figure(dpi=300)
+
+plt.xlabel('$t$(s)')
+plt.ylabel('$x$(m)')
+
+plt.plot(t1,x_1_1,'r-', markersize=1, label='fietser 1 model 1')
+plt.plot(t2, x_1_2, 'r--', markersize=1, label='fietser 1 model 2')
+plt.plot(t1,x_2_1,'b-', markersize=1, label='fietser 2 model 1')
+plt.plot(t2,x_2_2,'b--', markersize=1, label='fietser 2 model 2')
+plt.legend()
+plt.show()
+
+
+```
 
 <!-- Jouw antwoord hier  -->
 
