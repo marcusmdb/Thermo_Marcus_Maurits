@@ -36,7 +36,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Beginwaarden
-dt = 0.25                  #s
+dt = 1                 #s
 t_e = 10                   #s
 N = int(t_e/dt)+1
 t = np.arange(0,t_e+dt,dt) #s
@@ -58,7 +58,7 @@ for i in range(0,N-1):
     v_2[i+1] = v_2[i] + a_2*dt
 
 # Plotten van de gegevens.    
-plt.figure()
+plt.figure(dpi = 300)
 
 plt.xlabel('$t$(s)')
 plt.ylabel('$x$(m)')
